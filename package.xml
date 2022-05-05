@@ -181,6 +181,15 @@
             <outputDirectory>datax</outputDirectory>
         </fileSet>
 
+        <!--增加elasticsearchreader的相关jar包、lib依赖、json文件-->
+        <fileSet>
+            <directory>elasticsearchreader/target/datax/</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+            <outputDirectory>datax</outputDirectory>
+        </fileSet>
+
         <!-- writer -->
         <fileSet>
             <directory>mysqlwriter/target/datax/</directory>

@@ -1,0 +1,17 @@
+{
+  "name": "elasticsearchreader",
+  "parameter": {
+    "connection": [
+      "ip:9200"
+    ],
+    "index": "index_name",
+    "type": "_doc",
+    "pageSize": 100,
+    "column": [
+      "_id",
+      "",
+      "",
+      ""
+    ]
+  }
+}

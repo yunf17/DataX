@@ -14,21 +14,21 @@
                 <include>plugin.json</include>
                 <include>plugin_job_template.json</include>
             </includes>
-            <outputDirectory>plugin/writer/elasticsearchwriter</outputDirectory>
+            <outputDirectory>plugin/reader/elasticsearchreader</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>target/</directory>
             <includes>
-                <include>elasticsearchwriter-0.0.1-SNAPSHOT.jar</include>
+                <include>elasticsearchreader-0.0.1-SNAPSHOT.jar</include>
             </includes>
-            <outputDirectory>plugin/writer/elasticsearchwriter</outputDirectory>
+            <outputDirectory>plugin/reader/elasticsearchreader</outputDirectory>
         </fileSet>
     </fileSets>
 
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>plugin/writer/elasticsearchwriter/libs</outputDirectory>
+            <outputDirectory>plugin/reader/elasticsearchreader/libs</outputDirectory>
             <scope>runtime</scope>
         </dependencySet>
     </dependencySets>

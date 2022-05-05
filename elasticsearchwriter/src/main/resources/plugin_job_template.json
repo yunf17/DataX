@@ -1,0 +1,19 @@
+{
+  "name": "elasticsearchwriter",
+  "parameter": {
+    "connection": [
+      "ip:9200"
+    ],
+    "index": "index_name",
+    "type": "_doc",
+    "bulkNum": 1000,
+    "refresh": false,
+    "idField": "_id",
+    "column": [
+      "_id",
+      "",
+      "name",
+      ""
+    ]
+  }
+}

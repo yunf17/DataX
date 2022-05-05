@@ -65,7 +65,9 @@
         <module>rdbmsreader</module>
         <module>hbase11xreader</module>
         <module>hbase094xreader</module>
-        <module>tsdbreader</module>
+        <module>elasticsearchreader</module>
+        <!--取消阿里云时间序列数据库tsdb的reader插件-->
+        <!--<module>tsdbreader</module>-->
         <module>opentsdbreader</module>
         <module>cassandrareader</module>
         <module>gdbreader</module>
@@ -95,7 +97,8 @@
         <module>hbase11xsqlwriter</module>
         <module>hbase11xsqlreader</module>
         <module>elasticsearchwriter</module>
-        <module>tsdbwriter</module>
+        <!--取消阿里云时间序列数据库tsdb的writer插件-->
+        <!--<module>tsdbwriter</module>-->
         <module>adbpgwriter</module>
         <module>gdbwriter</module>
         <module>cassandrawriter</module>
