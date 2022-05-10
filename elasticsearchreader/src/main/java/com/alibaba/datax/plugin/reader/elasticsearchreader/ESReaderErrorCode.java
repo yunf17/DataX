@@ -7,8 +7,7 @@ public enum ESReaderErrorCode implements ErrorCode {
     ES_SEARCH_ERROR("ESReader-01", "search出错."),
     ES_INDEX_NOT_EXISTS("ESReader-02", "index不存在."),
     UNKNOWN_DATA_TYPE("ESReader-03", "无法识别的数据类型."),
-    COLUMN_CANT_BE_EMPTY("ESReader-04", "column不能为空."),
-    ;
+    COLUMN_CANT_BE_EMPTY("ESReader-04", "column不能为空.");
 
     private final String code;
     private final String description;

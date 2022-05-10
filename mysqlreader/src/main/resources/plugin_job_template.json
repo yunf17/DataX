@@ -1,15 +1,17 @@
 {
-    "name": "mysqlreader",
-    "parameter": {
-        "username": "",
-        "password": "",
-        "column": [],
-        "connection": [
-            {
-            "jdbcUrl": [],
-            "table": []
-            }
+  "name": "mysqlreader",
+  "parameter": {
+    "username": "",
+    "password": "",
+    "connection": [
+      {
+        "jdbcUrl": [
+          "jdbc:mysql://127.0.0.1:3306/db_name?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8"
         ],
-        "where": ""
-    }
+        "querySql": [
+          "select * from test where id > 2;"
+        ]
+      }
+    ]
+  }
 }

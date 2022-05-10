@@ -1,7 +1,6 @@
 package com.alibaba.datax.plugin.writer.elasticsearchwriter;
 
 import com.alibaba.datax.common.util.Configuration;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ public final class Key {
     // ----------------------------------------
     public static final String PRIMARY_KEY_COLUMN_NAME = "pk";
 
-    public static enum ActionType {
+    public enum ActionType {
         UNKONW,
         INDEX,
         CREATE,
@@ -35,9 +34,8 @@ public final class Key {
         }
     }
 
-
     public static String getEndpoint(Configuration conf) {
-        return conf.getNecessaryValue("endpoint", ESWriterErrorCode.BAD_CONFIG_VALUE);
+        return conf.getNecessaryValue("endpoints", ESWriterErrorCode.BAD_CONFIG_VALUE);
     }
 
     public static String getAccessID(Configuration conf) {
@@ -49,7 +47,7 @@ public final class Key {
     }
 
     public static int getBatchSize(Configuration conf) {
-        return conf.getInt("batchSize", 1000);
+        return conf.getInt("batchSize", 1024);
     }
 
     public static int getTrySize(Configuration conf) {
@@ -64,28 +62,16 @@ public final class Key {
         return conf.getBool("cleanup", false);
     }
 
-    public static boolean isDiscovery(Configuration conf) {
-        return conf.getBool("discovery", false);
-    }
-
-    public static boolean isCompression(Configuration conf) {
-        return conf.getBool("compression", true);
-    }
-
-    public static boolean isMultiThread(Configuration conf) {
-        return conf.getBool("multiThread", true);
-    }
+//    public static boolean isCompression(Configuration conf) {
+//        return conf.getBool("compression", true);
+//    }
 
     public static String getIndexName(Configuration conf) {
         return conf.getNecessaryValue("index", ESWriterErrorCode.BAD_CONFIG_VALUE);
     }
 
     public static String getTypeName(Configuration conf) {
-        String indexType = conf.getString("indexType");
-        if(StringUtils.isBlank(indexType)){
-            indexType = conf.getString("type", getIndexName(conf));
-        }
-        return indexType;
+        return conf.getString("type", "_doc");
     }
 
 
@@ -97,12 +83,8 @@ public final class Key {
         return conf.getBool("ignoreParseError", true);
     }
 
-
-    public static boolean isHighSpeedMode(Configuration conf) {
-        if ("highspeed".equals(conf.getString("mode", ""))) {
-            return  true;
-        }
-        return false;
+    public static boolean isWritePriority(Configuration conf) {
+        return conf.getBool("writePriority", false);
     }
 
     public static String getAlias(Configuration conf) {
@@ -121,11 +103,15 @@ public final class Key {
         return conf.getMap("settings", new HashMap<String, Object>());
     }
 
+    public static Map<String, Object> getColumn(Configuration conf) {
+        return conf.getMap("column", new HashMap<String, Object>());
+    }
+
     public static String getSplitter(Configuration conf) {
         return conf.getString("splitter", "-,-");
     }
 
-    public static boolean getDynamic(Configuration conf) {
-        return conf.getBool("dynamic", false);
+    public static String getDynamic(Configuration conf) {
+        return conf.getString("dynamic", "strict");
     }
 }

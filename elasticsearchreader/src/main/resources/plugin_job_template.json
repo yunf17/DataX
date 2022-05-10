@@ -1,17 +1,29 @@
 {
   "name": "elasticsearchreader",
   "parameter": {
-    "connection": [
-      "ip:9200"
-    ],
+    "endpoints": "ip:9200",
+    "accessId": "用户名",
+    "accessKey": "密码",
     "index": "index_name",
     "type": "_doc",
-    "pageSize": 100,
-    "column": [
-      "_id",
-      "",
-      "",
-      ""
-    ]
+    "search": [
+      {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "name": "xx"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "timeout": 60000,
+    "excludes": ["delete_flag"],
+    "includes": ["_id"],
+    "containsId": true
   }
 }

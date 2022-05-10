@@ -33,7 +33,7 @@
         "writer": {
           "name": "elasticsearchwriter",
           "parameter": {
-            "endpoint": "http://xxx:9999",
+            "endpoints": "xxx:9999",
             "accessId": "xxxx",
             "accessKey": "xxxx",
             "index": "test-1",
@@ -70,7 +70,7 @@
 
 #### 3.2 参数说明
 
-* endpoint
+* endpoints
  * 描述：ElasticSearch的连接地址
  * 必选：是
  * 默认值：无

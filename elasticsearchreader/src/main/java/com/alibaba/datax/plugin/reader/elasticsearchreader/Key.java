@@ -1,11 +1,10 @@
 package com.alibaba.datax.plugin.reader.elasticsearchreader;
 
 import com.alibaba.datax.common.util.Configuration;
-import com.alibaba.fastjson.JSON;
-import io.searchbox.params.SearchType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class Key {
@@ -15,37 +14,13 @@ public final class Key {
 
     public static final String SEARCH_KEY = "search";
 
-    public static enum ActionType {
-        UNKONW,
-        INDEX,
-        CREATE,
-        DELETE,
-        UPDATE
-    }
-
-    public static SearchType getSearchType(Configuration conf) {
+   /* public static SearchType getSearchType(Configuration conf) {
         String searchType = conf.getString("searchType", SearchType.DFS_QUERY_THEN_FETCH.toString());
         return SearchType.valueOf(searchType.toUpperCase());
-    }
+    }*/
 
-    public static ActionType getActionType(Configuration conf) {
-        String actionType = conf.getString("actionType", "index");
-        if ("index".equals(actionType)) {
-            return ActionType.INDEX;
-        } else if ("create".equals(actionType)) {
-            return ActionType.CREATE;
-        } else if ("delete".equals(actionType)) {
-            return ActionType.DELETE;
-        } else if ("update".equals(actionType)) {
-            return ActionType.UPDATE;
-        } else {
-            return ActionType.UNKONW;
-        }
-    }
-
-
-    public static String getEndpoint(Configuration conf) {
-        return conf.getNecessaryValue("endpoint", ESReaderErrorCode.BAD_CONFIG_VALUE);
+    public static String getEndpoints(Configuration conf) {
+        return conf.getNecessaryValue("endpoints", ESReaderErrorCode.BAD_CONFIG_VALUE);
     }
 
     public static String getAccessID(Configuration conf) {
@@ -56,8 +31,8 @@ public final class Key {
         return conf.getString("accessKey", "");
     }
 
-    public static int getBatchSize(Configuration conf) {
-        return conf.getInt("batchSize", 1000);
+    public static int getSize(Configuration conf) {
+        return conf.getInt("size", 10);
     }
 
     public static int getTrySize(Configuration conf) {
@@ -65,7 +40,7 @@ public final class Key {
     }
 
     public static int getTimeout(Configuration conf) {
-        return conf.getInt("timeout", 600000);
+        return conf.getInt("timeout", 60000);
     }
 
     public static boolean isCleanup(Configuration conf) {
@@ -145,13 +120,23 @@ public final class Key {
         return conf.getBool("dynamic", false);
     }
 
-    public static String getScroll(Configuration conf) {
-        return conf.getString("scroll");
+    public static String[] getIncludes(Configuration conf) {
+        List<String> includes = conf.getList("includes", String.class);
+        if (null != includes) {
+            return includes.toArray(new String[0]);
+        }
+        return null;
     }
 
-    public static EsTable getTable(Configuration conf) {
-        String column = conf.getString("table");
-        return JSON.parseObject(column, EsTable.class);
+    public static String[] getExcludes(Configuration conf) {
+        List<String> excludes = conf.getList("excludes", String.class);
+        if (null != excludes) {
+            return excludes.toArray(new String[0]);
+        }
+        return null;
     }
 
+    public static boolean getContainsId(Configuration conf) {
+        return conf.getBool("containsId", false);
+    }
 }

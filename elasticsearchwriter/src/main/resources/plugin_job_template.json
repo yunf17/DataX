@@ -1,19 +1,43 @@
 {
   "name": "elasticsearchwriter",
   "parameter": {
-    "connection": [
-      "ip:9200"
-    ],
+    "endpoints": "ip:9200",
+    "accessId": "用户名",
+    "accessKey": "密码",
     "index": "index_name",
     "type": "_doc",
-    "bulkNum": 1000,
-    "refresh": false,
-    "idField": "_id",
+    "cleanup": true,
+    "alias": "index_alias",
+    "writePriority": false,
+    "batchSize": 1000,
+    "splitter": ",",
+    "trySize": 30,
+    "timeout": 60000,
+    "dynamic": "strict",
+    "settings": {
+      "index": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
+      }
+    },
+    "ignoreWriteError": false,
+    "ignoreParseError": true,
+    "aliasMode": "append",
     "column": [
-      "_id",
-      "",
-      "name",
-      ""
+      {
+        "name": "_id",
+        "type": "id"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "search_analyzer": "ik_max_word"
+      },
+      {
+        "name": "col",
+        "type": "text",
+        "analyzer": "ik_smart"
+      }
     ]
   }
 }
